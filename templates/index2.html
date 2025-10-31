@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heart Disease Prediction</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+      text-align: center;
+      color: #667eea;
+      margin-bottom: 30px;
+      font-size: 28px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #333;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: transform 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+    }
+
+    #result {
+      margin-top: 25px;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      min-height: 60px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #result.show {
+      display: flex;
+    }
+
+    #result.success {
+      background: #d4edda;
+      color: #155724;
+      border: 2px solid #c3e6cb;
+    }
+
+    #result.error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 2px solid #f5c6cb;
+    }
+
+    footer {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 12px;
+      color: #666;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>💓 Heart Disease Prediction</h1>
+    <form id="predictForm">
+      
+      <!-- FIELD 1: Age -->
+      <div class="form-group">
+        <label>Age:</label>
+        <input type="number" name="age" id="age" required>
+      </div>
+
+      <!-- FIELD 2: Sex -->
+      <div class="form-group">
+        <label>Sex:</label>
+        <select name="sex" id="sex" required>
+          <option value="">Select...</option>
+          <option value="M">Male</option>
+          <option value="F">Female</option>
+        </select>
+      </div>
+
+      <!-- FIELD 3: Chest Pain Type -->
+      <div class="form-group">
+        <label>Chest Pain Type:</label>
+        <select name="chestpaintype" id="chestpaintype" required>
+          <option value="">Select...</option>
+          <option value="ATA">Atypical Angina (ATA)</option>
+          <option value="NAP">Non-Anginal Pain (NAP)</option>
+          <option value="ASY">Asymptomatic (ASY)</option>
+          <option value="TA">Typical Angina (TA)</option>
+        </select>
+      </div>
+
+      <!-- FIELD 4: Resting BP -->
+      <div class="form-group">
+        <label>Resting Blood Pressure:</label>
+        <input type="number" name="restingbp" id="restingbp" required>
+      </div>
+
+      <!-- FIELD 5: Cholesterol -->
+      <div class="form-group">
+        <label>Cholesterol:</label>
+        <input type="number" name="cholesterol" id="cholesterol" required>
+      </div>
+
+      <!-- FIELD 6: Fasting Blood Sugar -->
+      <div class="form-group">
+        <label>Fasting Blood Sugar (>120 mg/dl):</label>
+        <select name="fastingbs" id="fastingbs" required>
+          <option value="">Select...</option>
+          <option value="0">No (≤120 mg/dl)</option>
+          <option value="1">Yes (>120 mg/dl)</option>
+        </select>
+      </div>
+
+      <!-- FIELD 7: Resting ECG -->
+      <div class="form-group">
+        <label>Resting ECG:</label>
+        <select name="restingecg" id="restingecg" required>
+          <option value="">Select...</option>
+          <option value="Normal">Normal</option>
+          <option value="ST">ST-T wave abnormality (ST)</option>
+          <option value="LVH">Left Ventricular Hypertrophy (LVH)</option>
+        </select>
+      </div>
+
+      <!-- FIELD 8: Max Heart Rate -->
+      <div class="form-group">
+        <label>Maximum Heart Rate:</label>
+        <input type="number" name="maxhr" id="maxhr" required>
+      </div>
+
+      <!-- FIELD 9: Exercise Angina -->
+      <div class="form-group">
+        <label>Exercise-Induced Angina:</label>
+        <select name="exerciseangina" id="exerciseangina" required>
+          <option value="">Select...</option>
+          <option value="N">No</option>
+          <option value="Y">Yes</option>
+        </select>
+      </div>
+
+      <!-- FIELD 10: Oldpeak -->
+      <div class="form-group">
+        <label>Oldpeak (ST Depression):</label>
+        <input type="number" name="oldpeak" id="oldpeak" step="0.1" required>
+      </div>
+
+      <!-- FIELD 11: ST Slope -->
+      <div class="form-group">
+        <label>ST Slope:</label>
+        <select name="st_slope" id="st_slope" required>
+          <option value="">Select...</option>
+          <option value="Up">Upsloping (Up)</option>
+          <option value="Flat">Flat</option>
+          <option value="Down">Downsloping (Down)</option>
+        </select>
+      </div>
+
+      <button type="submit">Predict</button>
+    </form>
+
+    <div id="result"></div>
+    
+    <footer>Disclaimer: This is an educational demo model. Consult a doctor for medical advice.</footer>
+  </div>
+
+  <script>
+    document.getElementById("predictForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const resultDiv = document.getElementById("result");
+      resultDiv.textContent = "🔄 Processing...";
+      resultDiv.className = "show";
+
+      // Use FormData
+      const formData = new FormData(e.target);
+
+      try {
+        const response = await fetch("/predict", {
+          method: "POST",
+          body: formData
+        });
+
+        const result = await response.json();
+        console.log("Response:", result);
+        
+        if (result.success === false) {
+          resultDiv.textContent = "⚠️ Error: " + result.error;
+          resultDiv.className = "show error";
+        } else {
+          resultDiv.textContent = "🩺 " + result.result;
+          resultDiv.className = "show success";
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        resultDiv.textContent = "❌ Server Error: " + error.message;
+        resultDiv.className = "show error";
+      }
+    });
+  </script>
+</body>
+</html>
