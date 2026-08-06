@@ -1,0 +1,51 @@
+# ── Python ────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ── Virtual environment ────────────────────────────────────────
+venv/
+env/
+ENV/
+.venv/
+.env/
+
+# ── Environment variables / secrets ────────────────────────────
+.env
+.env.local
+.env.*.local
+*.env
+
+# ── Flask / runtime ────────────────────────────────────────────
+instance/
+.webassets-cache
+flask_session/
+
+# ── Jupyter Notebooks (checkpoints) ───────────────────────────
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# ── macOS ─────────────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# ── IDE / editors ─────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ── Logs ──────────────────────────────────────────────────────
+*.log
+logs/
