@@ -31,15 +31,15 @@ def predict():
        
         sex_encoded = 1 if sex == 'M' else 0
         
-        chest_pain_map = {'ATA': 0, 'NAP': 1, 'ASY': 2, 'TA': 3}
+        chest_pain_map = {'ASY': 0, 'ATA': 1, 'NAP': 2, 'TA': 3}
         chestpaintype_encoded = chest_pain_map.get(chestpaintype, 0)
         
-        restingecg_map = {'Normal': 0, 'ST': 1, 'LVH': 2}
+        restingecg_map = {'LVH': 0, 'Normal': 1, 'ST': 2}
         restingecg_encoded = restingecg_map.get(restingecg, 0)
         
         exerciseangina_encoded = 1 if exerciseangina == 'Y' else 0
         
-        st_slope_map = {'Up': 0, 'Flat': 1, 'Down': 2}
+        st_slope_map   = {'Down': 0, 'Flat': 1, 'Up': 2}
         st_slope_encoded = st_slope_map.get(st_slope, 0)
 
        
