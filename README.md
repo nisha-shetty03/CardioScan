@@ -5,9 +5,6 @@ A machine-learning powered web application that predicts the likelihood of heart
 ---
 
 ## Demo
-
-![CardioScan UI](static/preview.png)
-
 > ⚠️ **Disclaimer:** CardioScan is an educational tool only. It does not replace professional medical diagnosis or treatment. Always consult a licensed healthcare professional.
 
 ---
