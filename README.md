@@ -113,4 +113,5 @@ The model encodes categorical features (sex, chest pain type, ECG result, exerci
 
 ## License
 
-This project is for educational purposes. Dataset credit: [fedesoriano on Kaggle](https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction).
+This project is for educational purposes. 
+Dataset credit: [fedesoriano on Kaggle](https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction).
